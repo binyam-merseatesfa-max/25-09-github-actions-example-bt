@@ -11,7 +11,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "${{secrets.SSH_PRIVATE_KEY_101}}" > ~/.ssh/mein_schlüssel
-          chmod 400 ~/.ssh/mein_schlüssel
+          chmod 600 ~/.ssh/mein_schlüssel
           ssh-keyscan -H ${{secrets.EC2_IP_101}} >> ~/.ssh/known_hosts
 
       - name: install nginx-on-ec2 101
