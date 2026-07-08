@@ -20,5 +20,5 @@ jobs:
 
       - name: deploy website 101
         run: |
-          scp -i ~/.ssh/mein_schlüssel Frontend/index.html ubuntu@${{secrets.EC2_IP_101}}:/home/ubuntu/index.html
+          scp -i ~/.ssh/mein_schlüssel FrontendB/index.html ubuntu@${{secrets.EC2_IP_101}}:/home/ubuntu/index.html
           ssh -i ~/.ssh/mein_schlüssel ubuntu@${{secrets.EC2_IP_101}} "sudo cp /home/ubuntu/index.html /var/www/html/index.html"
