@@ -1,0 +1,23 @@
+name: deploy website workflow 102
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout-102
+        uses: actions/Checkout@v7
+
+      - name: ssh-setup-102
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{secrets.SSH_PRIVATE_KEY_101}}" > ~/.ssh/mein_schlüssel
+          chmod 400 ~/.ssh/mein_schlüssel
+          ssh-keyscan -H ${{secrets.EC2_IP_101}} >> ~/.ssh/known_hosts
+
+      - name: install nginx-on-ec2 101
+        run: |
+           ssh -i ~/.ssh/mein_schlüssel ubuntu@${{secrets.EC2_IP_101}} "sudo apt update && sudo apt install nginx -y"
+
+
+
+
