@@ -16,8 +16,9 @@ jobs:
 
       - name: install nginx-on-ec2 101
         run: |
-           ssh -i ~/.ssh/mein_schlüssel ubuntu@${{secrets.EC2_IP_101}} "sudo apt update && sudo apt install nginx -y"
+          ssh -i ~/.ssh/mein_schlüssel ubuntu@${{secrets.EC2_IP_101}} "sudo apt update && sudo apt install nginx -y"
 
-
-
-
+      - name: deploy website 101
+        run: |
+          scp -i ~/.ssh/mein_schlüssel Frontend/index.html ubuntu@${{secrets.EC2_IP_101}}:/home/ubuntu/index.html
+          ssh -i ~/.ssh/mein_schlüssel ubuntu@${{secrets.EC2_IP_101}} "sudo cp /home/ubuntu/index.html /var/www/html/index.html"
