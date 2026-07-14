@@ -7,7 +7,7 @@ variable "instance_type" {
     condition     = contains(["t2.micro", "t3.small", "t3.medium"], var.instance_type)
     error_message = "Instance type must be t2.micro, t3.small, or t3.medium."
   }
-}  
+}
 
 variable "instance_count" {
   description = "The EC2 instance count"
